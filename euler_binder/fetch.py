@@ -72,13 +72,13 @@ def fetch_problem(n, description, problem_folder):
                 f.write(chunk)
 
 def fetch_all(destination=destination):
-    res = session.get(ROOT + "minimal=problems;csv", expire_after=timedelta(days=1))
+    res = session.get(ROOT + "minimal=problems;csv", expire_after=timedelta(hours=1))
     res.raise_for_status()
     reader = csv.reader(res.text.splitlines())
     for id_num, description, published, solved_by in itertools.islice(reader, 1,  None):
         fetch_problem(int(id_num), description, destination)
         
 def upcoming():
-    res = session.get(fetch.ROOT + "minimal=new", expire_after=timedelta(days=1))
+    res = session.get(fetch.ROOT + "minimal=new", expire_after=timedelta(hours=1))
     res.raise_for_status()
     return res.text
