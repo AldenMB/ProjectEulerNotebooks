@@ -79,6 +79,6 @@ def fetch_all(destination=destination):
         fetch_problem(int(id_num), description, destination)
         
 def upcoming():
-    res = session.get(fetch.ROOT + "minimal=new", expire_after=timedelta(hours=1))
+    res = session.get(ROOT + "minimal=new", expire_after=timedelta(hours=1))
     res.raise_for_status()
     return res.text
