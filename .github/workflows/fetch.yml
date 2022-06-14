@@ -2,6 +2,7 @@ name: fetch-latest-problem
 
 # schedule is set automatically by script
 on:
+  workflow_dispatch:
   schedule:
     - cron: '30 5 14 6 *'
     - cron: '5 9 18 6 *'
