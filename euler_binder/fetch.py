@@ -86,6 +86,11 @@ def fetch_problem(n, description, problem_folder):
 
 def fetch_all(destination=destination):
     res = session.get(ROOT + "minimal=problems;csv", expire_after=0)
+    logger.debug(res.request.headers)
+    logger.debug(res.request.url)
+    logger.debug(res.request.body)
+    logger.debug(res.status_code)
+    logger.debug(res.reason)
     res.raise_for_status()
     reader = csv.reader(res.text.splitlines())
     for id_num, description, published, solved_by in itertools.islice(reader, 1, None):
