@@ -3,11 +3,11 @@ name: fetch-latest-problem
 # schedule is set automatically by script
 on:
   schedule:
-    - cron: '15 14 12 6 *'
     - cron: '5 9 18 6 *'
     - cron: '5 12 25 6 *'
     - cron: '5 15 2 7 *'
     - cron: '5 18 9 7 *'
+    - cron: '3 2 1 * *'
 # end of schedule
     
 jobs:
