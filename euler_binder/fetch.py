@@ -1,11 +1,16 @@
 import csv
-from datetime import timedelta
 import itertools
-from pathlib import Path
+import logging
 import re
+from datetime import timedelta
+from pathlib import Path
 
 import nbformat
 from requests_cache import CachedSession
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 session = CachedSession()
 

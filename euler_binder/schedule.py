@@ -1,9 +1,8 @@
 import datetime
-from pathlib import Path
 import re
+from pathlib import Path
 
 from .fetch import upcoming
-
 
 record = Path("./.github/workflows/fetch.yml")
 
