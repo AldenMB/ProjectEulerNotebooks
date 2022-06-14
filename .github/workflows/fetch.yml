@@ -20,3 +20,5 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m euler_binder
       - uses: actions-x/commit@v6
+        with:
+          files: problems http_cache.sqlite .github/workflows/fetch.yml
