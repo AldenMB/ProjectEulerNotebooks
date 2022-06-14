@@ -80,7 +80,7 @@ def fetch_problem(n, description, problem_folder):
 
 
 def fetch_all(destination=destination):
-    res = session.get(ROOT + "minimal=problems;csv", expire_after=timedelta(hours=1))
+    res = session.get(ROOT + "minimal=problems;csv", expire_after=0)
     res.raise_for_status()
     reader = csv.reader(res.text.splitlines())
     for id_num, description, published, solved_by in itertools.islice(reader, 1, None):
@@ -88,6 +88,6 @@ def fetch_all(destination=destination):
 
 
 def upcoming():
-    res = session.get(ROOT + "minimal=new", expire_after=timedelta(hours=1))
+    res = session.get(ROOT + "minimal=new", expire_after=0)
     res.raise_for_status()
     return res.text
