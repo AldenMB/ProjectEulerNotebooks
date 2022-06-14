@@ -7,7 +7,6 @@ on:
     - cron: '5 12 25 6 *'
     - cron: '5 15 2 7 *'
     - cron: '5 18 9 7 *'
-    - cron: '3 2 1 * *'
 # end of schedule
     
 jobs:
