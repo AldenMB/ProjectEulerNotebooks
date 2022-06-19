@@ -15,8 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
-        with:
-          cache: 'pip'
       - run: pip install -r requirements.txt
       - run: python -m euler_binder
       - uses: actions-x/commit@v6
