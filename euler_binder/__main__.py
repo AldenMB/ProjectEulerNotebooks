@@ -1,6 +1,8 @@
 trial_urls = [
     "https://google.com",
     "https://httpbin.org",
+    "https://projecteuler.chat",
+    "https://mathschallenge.net",
     "https://projecteuler.net",
     "https://projecteuler.net/problem=1",
     "https://projecteuler.net/minimal=1",
