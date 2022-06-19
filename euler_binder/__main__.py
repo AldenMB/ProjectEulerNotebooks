@@ -4,19 +4,6 @@ trial_urls = [
     "https://projecteuler.chat",
     "https://mathschallenge.net",
     "https://projecteuler.net",
-    "https://projecteuler.net/problem=1",
-    "https://projecteuler.net/minimal=1",
-    "https://projecteuler.net/minimal=problems",
-    "https://projecteuler.net/minimal=problems;csv",
-    "http://google.com",
-    "http://httpbin.org",
-    "http://projecteuler.chat",
-    "http://mathschallenge.net",
-    "http://projecteuler.net",
-    "http://projecteuler.net/problem=1",
-    "http://projecteuler.net/minimal=1",
-    "http://projecteuler.net/minimal=problems",
-    "http://projecteuler.net/minimal=problems;csv",
 ]
 
 def try_fetching_stuff():
