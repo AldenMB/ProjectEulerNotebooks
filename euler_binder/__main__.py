@@ -1,8 +1,9 @@
 trial_urls = [
-    "https://google.com",
-    "https://httpbin.org",
-    "https://projecteuler.chat",
-    "https://mathschallenge.net",
+    "http://google.com",
+    "http://httpbin.org",
+    "http://projecteuler.chat",
+    "http://mathschallenge.net",
+    "http://projecteuler.net",
     "https://projecteuler.net",
 ]
 
@@ -15,10 +16,10 @@ def try_fetching_stuff():
 
 
 if __name__ == "__main__":
-    from .fetch import fetch_all
+    from .fetch import fetch_all, find_proxy
     from .schedule import schedule
 
-    try_fetching_stuff()
-
+    #try_fetching_stuff()
+    find_proxy()
     fetch_all()
     schedule()

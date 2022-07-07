@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 session = CachedSession()
 
 
-ROOT = "https://projecteuler.net/"
+ROOT = "http://projecteuler.net/"
 
 pather = re.compile(
     '<(?:a href|img src)="(?P<path>project/(?:resources/.*?_|images/)(?P<name>.*?))"'
@@ -64,6 +64,26 @@ def _make_nb(description, statement, number):
     ]
     return nb
 
+
+def find_proxy():
+    try:
+        session.get(ROOT).raise_for_status()
+    except:
+        proxy_list = session.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all")
+        proxy_list.raise_for_status()
+        for proxy in proxy_list.text.splitlines():
+            proxies = {'http':f'http://{proxy}'}
+            try:
+                res = session.get(ROOT, proxies=proxies, timeout = 0.1)
+            except:
+                pass
+            else:
+                if res.status_code == 200:
+                    break
+        else:
+            raise ConnectionError("no usable proxy was found")
+        session.proxies = proxies
+    
 
 def fetch_problem(n, description, problem_folder):
     digits = f"{n:04d}"
