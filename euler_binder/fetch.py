@@ -6,14 +6,15 @@ from datetime import timedelta
 from pathlib import Path
 
 import nbformat
-from requests_cache import CachedSession
+import requests
+import requests_cache
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
-session = CachedSession()
-
+session = requests_cache.CachedSession()
+proxies = None
 
 ROOT = "http://projecteuler.net/"
 
@@ -26,7 +27,7 @@ destination = Path("./problems")
 
 def _get_raw(n, session=session):
     """Return the raw text for problem n."""
-    problem = session.get(ROOT + f"minimal={n}")
+    problem = session.get(ROOT + f"minimal={n}", proxies=proxies)
     problem.raise_for_status()
     return problem.text
 
@@ -66,15 +67,16 @@ def _make_nb(description, statement, number):
 
 
 def find_proxy():
+    global proxies
     try:
-        session.get(ROOT).raise_for_status()
+        requests.get(ROOT).raise_for_status()
     except:
-        proxy_list = session.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all")
+        proxy_list = requests.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all")
         proxy_list.raise_for_status()
-        for proxy in proxy_list.text.splitlines():
-            proxies = {'http':f'http://{proxy}'}
+        for proxy in proxy_list.iter_lines():
+            p = {'http':f'http://{proxy.decode()}'}
             try:
-                res = session.get(ROOT, proxies=proxies, timeout = 0.1)
+                res = requests.get(ROOT, proxies=p, timeout = 1)
             except:
                 pass
             else:
@@ -82,7 +84,7 @@ def find_proxy():
                     break
         else:
             raise ConnectionError("no usable proxy was found")
-        session.proxies = proxies
+        proxies = p
     
 
 def fetch_problem(n, description, problem_folder):
@@ -105,7 +107,7 @@ def fetch_problem(n, description, problem_folder):
 
 
 def fetch_all(destination=destination):
-    res = session.get(ROOT + "minimal=problems;csv", expire_after=0)
+    res = session.get(ROOT + "minimal=problems;csv", expire_after=0, proxies=proxies)
     logger.debug(res.request.headers)
     logger.debug(res.request.url)
     logger.debug(res.request.body)
@@ -118,6 +120,6 @@ def fetch_all(destination=destination):
 
 
 def upcoming():
-    res = session.get(ROOT + "minimal=new", expire_after=0)
+    res = session.get(ROOT + "minimal=new", expire_after=0, proxies=proxies)
     res.raise_for_status()
     return res.text
