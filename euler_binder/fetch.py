@@ -9,7 +9,7 @@ import nbformat
 import requests
 import requests_cache
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
