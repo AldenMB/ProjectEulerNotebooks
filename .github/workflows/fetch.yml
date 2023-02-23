@@ -14,8 +14,7 @@ on:
 # end of schedule
     
 permissions:
-  contents: write
-  workflows: write
+  actions: write
 
 jobs:
   fetch-problem:
