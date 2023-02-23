@@ -13,8 +13,6 @@ on:
     - cron: '5 12 15 10 *'
 # end of schedule
     
-permissions: write-all
-
 jobs:
   fetch-problem:
     runs-on: ubuntu-latest
@@ -25,4 +23,5 @@ jobs:
       - run: python -m euler_binder
       - uses: actions-x/commit@v6
         with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           files: problems http_cache.sqlite .github/workflows/fetch.yml
