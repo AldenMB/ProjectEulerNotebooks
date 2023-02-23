@@ -13,8 +13,7 @@ on:
     - cron: '5 12 15 10 *'
 # end of schedule
     
-permissions:
-  actions: write
+permissions: write-all
 
 jobs:
   fetch-problem:
