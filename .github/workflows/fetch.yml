@@ -4,7 +4,6 @@ name: fetch-latest-problem
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 1 26 2 *'
     - cron: '5 4 5 3 *'
     - cron: '5 7 12 3 *'
     - cron: '5 10 19 3 *'
