@@ -4,8 +4,12 @@ name: fetch-latest-problem
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 16 1 4 *'
-    - cron: '5 16 1 4 *'
+    - cron: '5 19 8 4 *'
+    - cron: '5 22 15 4 *'
+    - cron: '5 1 23 4 *'
+    - cron: '5 4 30 4 *'
+    - cron: '5 7 7 5 *'
+    - cron: '5 10 14 5 *'
 # end of schedule
     
 jobs:
